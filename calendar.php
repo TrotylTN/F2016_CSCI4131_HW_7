@@ -24,89 +24,53 @@
     <p>
     </p>
 
+    <table class="warn"> <tr class="warn"> <td class="warn">
+      <?php
+        if (!file_exists("calendar.txt")) {
+          echo "Calendar has no events. Please use the input page to enter some events.\n";
+        }
+        else {
+          $jsonfile = fopen("calendar.txt", "r") or die("Unable to open file!");
+          $caldata = array("Mon"=>array(), "Tue"=>array(), "Wed"=>array(), "Thu"=>array(), "Fri"=>array());
+          global $caldata;
+          while (!feof($jsonfile)) {
+            $enjsondata = fgets($jsonfile);
+            if ($enjsondata == "")
+              break;
+            $jsondata = json_decode($enjsondata);
+            // echo $enjsondata;
+            // echo $jsondata->{"day"};
+            $cnt = count($caldata[$jsondata->{"day"}]); 
+            // echo $cnt;
+            $caldata[$jsondata->{"day"}][$cnt]["eventname"] = $jsondata->{"eventname"};
+            $caldata[$jsondata->{"day"}][$cnt]["starttime"] = $jsondata->{"starttime"};
+            $caldata[$jsondata->{"day"}][$cnt]["endtime"] = $jsondata->{"endtime"};
+            $caldata[$jsondata->{"day"}][$cnt]["location"] = $jsondata->{"location"};
+          }
+        }
+      ?>
+    </td> </tr> </table>      
     <div>
     <table>
-      <tr class="c">
-          <td class="days"> Mon </td>
-          <td class="c">
-              <span class="time"> 3:35 - 4:25 PM </span> <br> <br>
-              CSCI 4061 DIS <br>@<a href="http://campusmaps.umn.edu/kenneth-h-keller-hall">Keller Hall</a> 1-250 <br>
-          </td>
-          <td class="c" style="vertical-align: middle"> - </td>
-          <td class="c" style="vertical-align: middle"> - </td>
-          <td class="c" style="vertical-align: middle"> - </td>
-      </tr>
-
-      <tr class="c">
-          <td class="days"> Tue </td>
-          <td class="c">
-              <span class="time"> 8:15 - 9:30 AM </span> <br> <br>
-              CSCI 3081W LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 412 <br>
-          </td>
-
-          <td class="c">
-              <span class="time"> 9:45 - 11:00 AM </span> <br> <br>
-              CSCI 4061 LEC <br>@<a href="http://campusmaps.umn.edu/bell-museum-natural-history">Bell Museum</a> <br>
-          </td>
-
-          <td class="c">
-              <span class="time"> 1:00 - 2:15 PM </span> <br> <br>
-              CSCI 4707 LEC <br>@<a href="http://campusmaps.umn.edu/fraser-hall">Fraser Hall</a> 101 <br>
-          </td>
-
-          <td class="c">
-              <span class="time"> 2:30 - 3:45 PM </span> <br> <br>
-              CSCI 4131 LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 230 <br>
-          </td>
-      </tr>
-
-      <tr class="c">
-          <td class="days"> Wed </td>
-          <td class="c">
-              <span class="time"> 6:30 - 9:00 PM </span> <br> <br>
-              CSCI 4211 LEC <br>@<a href="http://campusmaps.umn.edu/vincent-hall">Vincent Hall</a> 16 <br>
-          <td class="c" style="vertical-align: middle"> - </td>
-          <td class="c" style="vertical-align: middle"> - </td>
-          <td class="c" style="vertical-align: middle"> - </td>
-      </tr>
-
-      <tr class="c">
-          <td class="days"> Thu </td>
-          <td class="c">
-              <span class="time"> 8:15 - 9:30 AM </span> <br> <br>
-              CSCI 3081W LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 412 <br>
-          </td>
-
-          <td class="c">
-              <span class="time"> 9:45 - 11:00 AM </span> <br> <br>
-              CSCI 4061 LEC <br>@<a href="http://campusmaps.umn.edu/bell-museum-natural-history">Bell Museum</a> <br>
-          </td>
-
-          <td class="c">
-              <span class="time"> 1:00 - 2:15 PM </span> <br> <br>
-              CSCI 4707 LEC <br>@<a href="http://campusmaps.umn.edu/fraser-hall">Fraser Hall</a> 101 <br />
-          </td>
-
-          <td class="c">
-              <span class="time"> 2:30 - 3:45 PM </span> <br> <br>
-              CSCI 4131 LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 230 <br />
-          </td>
-      </tr>
-
-      <tr class="c">
-          <td class="days"> Fri </td>
-          <td class="c">
-              <span class="time"> 9:05 - 9:55 AM </span> <br> <br>
-              CSCI 3081W DIS <br>@<a href="http://campusmaps.umn.edu/kenneth-h-keller-hall">Keller Hall</a> 1-250 <br />
-          </td>
-
-          <td class="c">
-              <span class="time"> 10:10 - 11:00 AM </span> <br> <br>
-              GEOG 1502 LEC <br>@<a href="http://campusmaps.umn.edu/herbert-m-hanson-jr-hall" >Hanson Hall</a> 1-106 <br />
-          </td>
-          <td class="c" style="vertical-align: middle"> - </td>
-          <td class="c" style="vertical-align: middle"> - </td>
-      </tr>
+      <?php
+        global $caldata;
+        foreach ($caldata as $day_n => $day_arr) {
+          if (count($day_arr) > 0) {
+            echo "<tr class='c'>\n";
+            echo "<td class='days'> " . $day_n . " </td>\n";
+            $tot = count($day_arr);
+            for ($i = 0; $i < $tot; $i++) {
+              echo "<td class='c'>";
+              echo "<span class='time'> ";
+              echo $day_arr[$i]["starttime"] . " - " . $day_arr[$i]["endtime"];
+              echo " </span> <br> <br>";
+              echo $day_arr[$i]["eventname"] . "<br>@" . $day_arr[$i]["location"] . " <br>";
+              echo "</td>";
+            }
+            echo "</tr>";
+          }
+        }
+      ?>
     </table>
     </div>
 
@@ -144,7 +108,6 @@
     </div>
 
     <script>
-
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
         center: {lat: 44.974, lng: -93.234}
@@ -164,9 +127,8 @@
     // createCourse(44.974518, -93.23470199999997, "Vincent Hall<br><br>CSCI 4211 LEC<br>#16");
     // createCourse(44.9694932, -93.2446084, "Hanson Hall<br><br>GEOG 1502 LEC<br>#1-106");
 
-    function createCourse(x, y, courseName)
+    function createCourse(myLatlng, courseName)
     {
-        var myLatlng = new google.maps.LatLng(x,y);
         var marker = new google.maps.Marker({
             map: map,
             position: myLatlng,
@@ -240,6 +202,29 @@
         }
         service.nearbySearch(request, callback);
     }
+
+    var eventn = "";
+    function eventPhpCallback(results, status)
+    {
+      if (status == google.maps.places.PlacesServiceStatus.OK)
+      {
+        createCourse(results[0].geometry.location, eventn);
+      }      
+    }
+    <?php
+      global $caldata;
+      foreach ($caldata as $day_n => $day_arr) {
+        if (count($day_arr) > 0) {
+          $tot = count($day_arr);
+          for ($i = 0; $i < $tot; $i++) {
+            echo "request = {query: '" . $day_arr[$i]["location"] . ", Minneapolis'};\n";
+            echo "eventn = '<b>" . $day_arr[$i]["eventname"] . "</b>';\n";
+            echo "service.textSearch(request, eventPhpCallback);\n";
+            // echo "createCourse(php_loc, '" . $day_arr[$i]["eventname"] . "' );\n";
+          }
+        }
+      }      
+    ?>
     </script>
 </body>
 </html>

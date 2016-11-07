@@ -160,3 +160,10 @@ tr.c, td.c
 {
     height: 100px;
 }
+
+table.warn, td.warn, tr.warn {
+    border: 0px;
+    background-color: #AEB6BF;
+    width: 800px;
+    color: red;
+}

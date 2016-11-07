@@ -45,9 +45,49 @@
             <button class="navlink" onclick="{location.href='./input.php'}">Form Input</button>
         </nav>
         </div>
+        <table class="warn"> <tr class="warn"> <td class="warn">
+            <?php 
+            $AllOK = true;
+            if ($_POST["eventname"] == "") {
+            echo "Please provide a value for Event Name<br>";
+            $AllOK = false;
+            }
 
+            if ($_POST["starttime"] == "") {
+            echo "Please select a value for Start Time!<br>";
+            $AllOK = false;
+            }
+
+            if ($_POST["endtime"] == "") {
+            echo "Please select a value for Event End Time<br>";
+            $AllOK = false;
+            }          
+
+            if ($_POST["location"] == "") {
+            echo "Please enter a value for Event Location<br>";
+            }
+
+            if ($AllOK) {
+                $jsonarr = array('eventname' => $_POST["eventname"],
+                                 'starttime' => $_POST["starttime"],
+                                 'endtime' => $_POST["endtime"],
+                                 'location' => $_POST["location"],
+                                 'day' => $_POST["day"]
+                                 );
+                $jsonstring = json_encode($jsonarr);
+                // echo $jsonstring;
+                $jsonfile = fopen("calendar.txt", "a") or die("Unable to open file!");
+                fwrite($jsonfile, $jsonstring);
+                fwrite($jsonfile, "\n");
+                fclose($jsonfile);
+                // {location.href='./calendar.php'}
+                header('Location: ./calendar.php');
+            }
+          ?>
+        </td> </tr> </table>
+        <p></p>
         <div>
-        <form class="inputform" action="http://www-users.cselabs.umn.edu/~sharm398/index.php" method="get">
+        <form class="inputform" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <table class="input">
             <tr class="input">
                 <td class="input">
@@ -88,11 +128,11 @@
                 <td class="input">
                 <p>
                     <select name="day">
-                        <option value="Monday">Mon</option>
-                        <option value="Tuesday">Tue</option>
-                        <option value="Wednesday">Wed</option>
-                        <option value="Thursday">Thu</option>
-                        <option value="Friday">Fri</option>
+                        <option value="Mon">Mon</option>
+                        <option value="Tue">Tue</option>
+                        <option value="Wed">Wed</option>
+                        <option value="Thu">Thu</option>
+                        <option value="Fri">Fri</option>
                     </select>
                 </p>
                 </td>

@@ -32,11 +32,13 @@
         else {
           $jsonfile = fopen("calendar.txt", "r") or die("Unable to open file!");
           $caldata = array("Mon"=>array(), "Tue"=>array(), "Wed"=>array(), "Thu"=>array(), "Fri"=>array());
+          $dataexist = false;
           global $caldata;
           while (!feof($jsonfile)) {
             $enjsondata = fgets($jsonfile);
             if ($enjsondata == "")
               break;
+            $dataexist = true;
             $jsondata = json_decode($enjsondata);
             // echo $enjsondata;
             // echo $jsondata->{"day"};
@@ -46,6 +48,9 @@
             $caldata[$jsondata->{"day"}][$cnt]["starttime"] = $jsondata->{"starttime"};
             $caldata[$jsondata->{"day"}][$cnt]["endtime"] = $jsondata->{"endtime"};
             $caldata[$jsondata->{"day"}][$cnt]["location"] = $jsondata->{"location"};
+          }
+          if (!$caldata) {
+            echo "Calendar has no events. Please use the input page to enter some events.\n";            
           }
         }
       ?>
@@ -203,12 +208,11 @@
         service.nearbySearch(request, callback);
     }
 
-    var eventn = "";
     function eventPhpCallback(results, status)
     {
       if (status == google.maps.places.PlacesServiceStatus.OK)
       {
-        createCourse(results[0].geometry.location, eventn);
+        createCourse(results[0].geometry.location, "<b>" + results[0].name + "</b>");
       }      
     }
     <?php
@@ -218,7 +222,6 @@
           $tot = count($day_arr);
           for ($i = 0; $i < $tot; $i++) {
             echo "request = {query: '" . $day_arr[$i]["location"] . ", Minneapolis'};\n";
-            echo "eventn = '<b>" . $day_arr[$i]["eventname"] . "</b>';\n";
             echo "service.textSearch(request, eventPhpCallback);\n";
             // echo "createCourse(php_loc, '" . $day_arr[$i]["eventname"] . "' );\n";
           }

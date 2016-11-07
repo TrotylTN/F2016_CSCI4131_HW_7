@@ -41,8 +41,8 @@
         <div>
         <h2 class="tntitle"> Calendar Input </h2>
         <nav class="cal">
-            <button class="navlink" onclick="{location.href='./calendar.html'}">My Calendar</button>
-            <button class="navlink" onclick="{location.href='./inputform.html'}">Form Input</button>
+            <button class="navlink" onclick="{location.href='./calendar.php'}">My Calendar</button>
+            <button class="navlink" onclick="{location.href='./input.php'}">Form Input</button>
         </nav>
         </div>
 

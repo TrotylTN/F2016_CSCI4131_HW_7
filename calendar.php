@@ -16,8 +16,8 @@
     <div>
     <h2 class="tntitle"> Tiannan's Calendar </h2>
     <nav class="cal">
-        <button class="navlink" onclick="{location.href='./calendar.html'}">My Calendar</button>
-        <button class="navlink" onclick="{location.href='./inputform.html'}">Form Input</button>
+        <button class="navlink" onclick="{location.href='./calendar.php'}">My Calendar</button>
+        <button class="navlink" onclick="{location.href='./input.php'}">Form Input</button>
     </nav>
     </div>
 
@@ -26,99 +26,87 @@
 
     <div>
     <table>
-        <tr class="c">
-            <td class="days"> Mon </td>
-            <td class="c">
-                <span class="time"> 3:35 - 4:25 PM </span> <br> <br>
-                CSCI 4061 DIS <br>@<a href="http://campusmaps.umn.edu/kenneth-h-keller-hall" onmouseover="display_photo_on(11)" onmouseout="hide_photo(11)">Keller Hall</a> 1-250 <br>
-                <img id="11" class="cal" alt="Keller" src="./kellerhall.jpg" />
-            </td>
-            <td class="c" style="vertical-align: middle"> - </td>
-            <td class="c" style="vertical-align: middle"> - </td>
-            <td class="c" style="vertical-align: middle"> - </td>
-        </tr>
+      <tr class="c">
+          <td class="days"> Mon </td>
+          <td class="c">
+              <span class="time"> 3:35 - 4:25 PM </span> <br> <br>
+              CSCI 4061 DIS <br>@<a href="http://campusmaps.umn.edu/kenneth-h-keller-hall">Keller Hall</a> 1-250 <br>
+          </td>
+          <td class="c" style="vertical-align: middle"> - </td>
+          <td class="c" style="vertical-align: middle"> - </td>
+          <td class="c" style="vertical-align: middle"> - </td>
+      </tr>
 
-        <tr class="c">
-            <td class="days"> Tue </td>
-            <td class="c">
-                <span class="time"> 8:15 - 9:30 AM </span> <br> <br>
-                CSCI 3081W LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall" onmouseover="display_photo_on(21)" onmouseout="hide_photo(21)">Bruininks Hall</a> 412 <br>
-                <img id="21" class="cal" alt="Bruininks" src="./bruininks.jpg" />
-            </td>
+      <tr class="c">
+          <td class="days"> Tue </td>
+          <td class="c">
+              <span class="time"> 8:15 - 9:30 AM </span> <br> <br>
+              CSCI 3081W LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 412 <br>
+          </td>
 
-            <td class="c">
-                <span class="time"> 9:45 - 11:00 AM </span> <br> <br>
-                CSCI 4061 LEC <br>@<a href="http://campusmaps.umn.edu/bell-museum-natural-history" onmouseover="display_photo_on(22)" onmouseout="hide_photo(22)">Bell Museum</a> <br>
-                <img id="22" class="cal" alt="Bell Museum" src="bellmuseum.jpg" />
-            </td>
+          <td class="c">
+              <span class="time"> 9:45 - 11:00 AM </span> <br> <br>
+              CSCI 4061 LEC <br>@<a href="http://campusmaps.umn.edu/bell-museum-natural-history">Bell Museum</a> <br>
+          </td>
 
-            <td class="c">
-                <span class="time"> 1:00 - 2:15 PM </span> <br> <br>
-                CSCI 4707 LEC <br>@<a href="http://campusmaps.umn.edu/fraser-hall" onmouseover="display_photo_on(23)" onmouseout="hide_photo(23)">Fraser Hall</a> 101 <br>
-                <img id="23" class="cal" alt="Fraser" src="./fraser.jpg" />
-            </td>
+          <td class="c">
+              <span class="time"> 1:00 - 2:15 PM </span> <br> <br>
+              CSCI 4707 LEC <br>@<a href="http://campusmaps.umn.edu/fraser-hall">Fraser Hall</a> 101 <br>
+          </td>
 
-            <td class="c">
-                <span class="time"> 2:30 - 3:45 PM </span> <br> <br>
-                CSCI 4131 LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall" onmouseover="display_photo_on(24)" onmouseout="hide_photo(24)">Bruininks Hall</a> 230 <br>
-                <img id="24" class="cal" alt="Bruininks" src="./bruininks.jpg" />
-            </td>
-        </tr>
+          <td class="c">
+              <span class="time"> 2:30 - 3:45 PM </span> <br> <br>
+              CSCI 4131 LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 230 <br>
+          </td>
+      </tr>
 
-        <tr class="c">
-            <td class="days"> Wed </td>
-            <td class="c">
-                <span class="time"> 6:30 - 9:00 PM </span> <br> <br>
-                CSCI 4211 LEC <br>@<a href="http://campusmaps.umn.edu/vincent-hall" onmouseover="display_photo_on(31)" onmouseout="hide_photo(31)">Vincent Hall</a> 16 <br>
-                <img id="31" class="cal" alt="Vincent" src="./vincent.jpg" />
-            <td class="c" style="vertical-align: middle"> - </td>
-            <td class="c" style="vertical-align: middle"> - </td>
-            <td class="c" style="vertical-align: middle"> - </td>
-        </tr>
+      <tr class="c">
+          <td class="days"> Wed </td>
+          <td class="c">
+              <span class="time"> 6:30 - 9:00 PM </span> <br> <br>
+              CSCI 4211 LEC <br>@<a href="http://campusmaps.umn.edu/vincent-hall">Vincent Hall</a> 16 <br>
+          <td class="c" style="vertical-align: middle"> - </td>
+          <td class="c" style="vertical-align: middle"> - </td>
+          <td class="c" style="vertical-align: middle"> - </td>
+      </tr>
 
-        <tr class="c">
-            <td class="days"> Thu </td>
-            <td class="c">
-                <span class="time"> 8:15 - 9:30 AM </span> <br> <br>
-                CSCI 3081W LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall" onmouseover="display_photo_on(41)" onmouseout="hide_photo(41)">Bruininks Hall</a> 412 <br>
-                <img id="41" class="cal" alt="Bruininks" src="./bruininks.jpg" />
-            </td>
+      <tr class="c">
+          <td class="days"> Thu </td>
+          <td class="c">
+              <span class="time"> 8:15 - 9:30 AM </span> <br> <br>
+              CSCI 3081W LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 412 <br>
+          </td>
 
-            <td class="c">
-                <span class="time"> 9:45 - 11:00 AM </span> <br> <br>
-                CSCI 4061 LEC <br>@<a href="http://campusmaps.umn.edu/bell-museum-natural-history" onmouseover="display_photo_on(42)" onmouseout="hide_photo(42)">Bell Museum</a> <br>
-                <img id="42" class="cal" alt="Bell Museum" src="bellmuseum.jpg" />
-            </td>
+          <td class="c">
+              <span class="time"> 9:45 - 11:00 AM </span> <br> <br>
+              CSCI 4061 LEC <br>@<a href="http://campusmaps.umn.edu/bell-museum-natural-history">Bell Museum</a> <br>
+          </td>
 
-            <td class="c">
-                <span class="time"> 1:00 - 2:15 PM </span> <br> <br>
-                CSCI 4707 LEC <br>@<a href="http://campusmaps.umn.edu/fraser-hall" onmouseover="display_photo_on(43)" onmouseout="hide_photo(43)">Fraser Hall</a> 101 <br />
-                <img id="43" class="cal" alt="Fraser" src="./fraser.jpg" />
-            </td>
+          <td class="c">
+              <span class="time"> 1:00 - 2:15 PM </span> <br> <br>
+              CSCI 4707 LEC <br>@<a href="http://campusmaps.umn.edu/fraser-hall">Fraser Hall</a> 101 <br />
+          </td>
 
-            <td class="c">
-                <span class="time"> 2:30 - 3:45 PM </span> <br> <br>
-                CSCI 4131 LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall" onmouseover="display_photo_on(44)" onmouseout="hide_photo(44)">Bruininks Hall</a> 230 <br />
-                <img id="44" class="cal" alt="Bruininks" src="./bruininks.jpg" />
-            </td>
-        </tr>
+          <td class="c">
+              <span class="time"> 2:30 - 3:45 PM </span> <br> <br>
+              CSCI 4131 LEC <br>@<a href="http://campusmaps.umn.edu/robert-h-bruininks-hall">Bruininks Hall</a> 230 <br />
+          </td>
+      </tr>
 
-        <tr class="c">
-            <td class="days"> Fri </td>
-            <td class="c">
-                <span class="time"> 9:05 - 9:55 AM </span> <br> <br>
-                CSCI 3081W DIS <br>@<a href="http://campusmaps.umn.edu/kenneth-h-keller-hall" onmouseover="display_photo_on(51)" onmouseout="hide_photo(51)">Keller Hall</a> 1-250 <br />
-                <img id="51" class="cal" alt="Keller" src="./kellerhall.jpg" />
-            </td>
+      <tr class="c">
+          <td class="days"> Fri </td>
+          <td class="c">
+              <span class="time"> 9:05 - 9:55 AM </span> <br> <br>
+              CSCI 3081W DIS <br>@<a href="http://campusmaps.umn.edu/kenneth-h-keller-hall">Keller Hall</a> 1-250 <br />
+          </td>
 
-            <td class="c">
-                <span class="time"> 10:10 - 11:00 AM </span> <br> <br>
-                GEOG 1502 LEC <br>@<a href="http://campusmaps.umn.edu/herbert-m-hanson-jr-hall" onmouseover="display_photo_on(52)" onmouseout="hide_photo(52)">Hanson Hall</a> 1-106 <br />
-                <img id="52" class="cal" alt="Hanson" src="./hansonhall.jpg" />
-            </td>
-            <td class="c" style="vertical-align: middle"> - </td>
-            <td class="c" style="vertical-align: middle"> - </td>
-        </tr>
+          <td class="c">
+              <span class="time"> 10:10 - 11:00 AM </span> <br> <br>
+              GEOG 1502 LEC <br>@<a href="http://campusmaps.umn.edu/herbert-m-hanson-jr-hall" >Hanson Hall</a> 1-106 <br />
+          </td>
+          <td class="c" style="vertical-align: middle"> - </td>
+          <td class="c" style="vertical-align: middle"> - </td>
+      </tr>
     </table>
     </div>
 
@@ -169,12 +157,12 @@
     document.getElementById('submit_geo').addEventListener('click', getAddress);
     document.getElementById('submit_res').addEventListener('click', getRestaurants);
 
-    createCourse(44.9745476, -93.23223189999999, "Keller Hall<br><br>CSCI 4061 DIS<br>#1-250<br><br>CSCI 3081W DIS<br>#1-250");
-    createCourse(44.9740918, -93.23723039999999, "Bruininks Hall<br><br>CSCI 3081W LEC<br>#412<br><br>CSCI 4131 LEC<br>#230");
-    createCourse(44.977829, -93.23339799999997, "Bell Museum<br><br>CSCI 4061 LEC<br>Auditorium");
-    createCourse(44.9755702, -93.2373867, "Fraser Hall<br><br>CSCI 4707 LEC<br>#101");
-    createCourse(44.974518, -93.23470199999997, "Vincent Hall<br><br>CSCI 4211 LEC<br>#16");
-    createCourse(44.9694932, -93.2446084, "Hanson Hall<br><br>GEOG 1502 LEC<br>#1-106");
+    // createCourse(44.9745476, -93.23223189999999, "Keller Hall<br><br>CSCI 4061 DIS<br>#1-250<br><br>CSCI 3081W DIS<br>#1-250");
+    // createCourse(44.9740918, -93.23723039999999, "Bruininks Hall<br><br>CSCI 3081W LEC<br>#412<br><br>CSCI 4131 LEC<br>#230");
+    // createCourse(44.977829, -93.23339799999997, "Bell Museum<br><br>CSCI 4061 LEC<br>Auditorium");
+    // createCourse(44.9755702, -93.2373867, "Fraser Hall<br><br>CSCI 4707 LEC<br>#101");
+    // createCourse(44.974518, -93.23470199999997, "Vincent Hall<br><br>CSCI 4211 LEC<br>#16");
+    // createCourse(44.9694932, -93.2446084, "Hanson Hall<br><br>GEOG 1502 LEC<br>#1-106");
 
     function createCourse(x, y, courseName)
     {
@@ -251,16 +239,6 @@
             type: ['restaurant']
         }
         service.nearbySearch(request, callback);
-    }
-
-    function display_photo_on(xid)
-    {
-        setTimeout('document.getElementById("' + String(xid) + '").style.opacity = 1;', 0);
-    }
-
-    function hide_photo(xid)
-    {
-        setTimeout('document.getElementById("' + String(xid) + '").style.opacity = 0;', 0);
     }
     </script>
 </body>

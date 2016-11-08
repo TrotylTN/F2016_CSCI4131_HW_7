@@ -73,9 +73,8 @@
                         echo "Please enter a value for Event Location<br>";
                         $AllOK = false;
                     }
-
-                    if ($AllOK && strtotime($_POST["starttime"]) < strtotime($_POST["endtime"])) {
-                        echo "Please enter a endtime which is later than the start time<br>"
+                    if ($AllOK && ($_POST["starttime"] > $_POST["endtime"])) {
+                        echo "Please enter a endtime which is later than the start time<br>";
                         $AllOK = false;
                     }
 
@@ -87,12 +86,10 @@
                                          'day' => $_POST["day"]
                                          );
                         $jsonstring = json_encode($jsonarr);
-                        // echo $jsonstring;
                         $jsonfile = fopen("calendar.txt", "a") or die("Unable to open file!");
                         fwrite($jsonfile, $jsonstring);
                         fwrite($jsonfile, "\n");
                         fclose($jsonfile);
-                        // {location.href='./calendar.php'}
                         header('Location: ./calendar.php');
                     }                
                 }

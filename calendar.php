@@ -26,13 +26,12 @@
 
     <table class="warn"> <tr class="warn"> <td class="warn">
       <?php
+        $caldata = array("Mon"=>array(), "Tue"=>array(), "Wed"=>array(), "Thu"=>array(), "Fri"=>array());      
         if (!file_exists("calendar.txt")) {
             echo "Calendar has no events. Please use the input page to enter some events.\n";
         }
         else {
             $jsonfile = fopen("calendar.txt", "r") or die("Unable to open file!");
-            $caldata = array("Mon"=>array(), "Tue"=>array(), "Wed"=>array(), "Thu"=>array(), "Fri"=>array());
-            $dataexist = false;
             global $caldata;
             $enjsondata = fgets($jsonfile);
             if (feof($jsonfile)) {
@@ -42,7 +41,6 @@
                 while (!feof($jsonfile)) {
                     if ($enjsondata == "")
                         break; 
-                    $dataexist = true;
                     $jsondata = json_decode($enjsondata);
                     $cnt = count($caldata[$jsondata->{"day"}]); 
                     $caldata[$jsondata->{"day"}][$cnt]["eventname"] = $jsondata->{"eventname"};
@@ -53,6 +51,20 @@
                 }
             }
             fclose($jsonfile);
+        }
+
+        // sort
+        foreach ($caldata as $day_n => $day_arr) {
+            $tot = count($day_arr);
+            for ($i = 0; $i <$tot; $i++) {
+                for ($j = $i; $j < $tot; $j++) {
+                    if ($day_arr[$i]["starttime"] > $day_arr[$j]["starttime"]) {
+                        $temp = $day_arr[$i];
+                        $day_arr[$i] = $day_arr[$j];
+                        $day_arr[$j] = $temp;
+                    }
+                }
+            }
         }
       ?>
     </td> </tr> </table>      

@@ -47,41 +47,48 @@
         </div>
         <table class="warn"> <tr class="warn"> <td class="warn">
             <?php 
-            $AllOK = true;
-            if ($_POST["eventname"] == "") {
-            echo "Please provide a value for Event Name<br>";
-            $AllOK = false;
-            }
-
-            if ($_POST["starttime"] == "") {
-            echo "Please select a value for Start Time!<br>";
-            $AllOK = false;
-            }
-
-            if ($_POST["endtime"] == "") {
-            echo "Please select a value for Event End Time<br>";
-            $AllOK = false;
-            }          
-
-            if ($_POST["location"] == "") {
-            echo "Please enter a value for Event Location<br>";
-            }
-
-            if ($AllOK) {
-                $jsonarr = array('eventname' => $_POST["eventname"],
-                                 'starttime' => $_POST["starttime"],
-                                 'endtime' => $_POST["endtime"],
-                                 'location' => $_POST["location"],
-                                 'day' => $_POST["day"]
-                                 );
-                $jsonstring = json_encode($jsonarr);
-                // echo $jsonstring;
-                $jsonfile = fopen("calendar.txt", "a") or die("Unable to open file!");
-                fwrite($jsonfile, $jsonstring);
-                fwrite($jsonfile, "\n");
+            if ($_POST["clearall"] == 'confirm') {
+                $jsonfile = fopen("calendar.txt", "w") or die("Unable to clean file!");
                 fclose($jsonfile);
-                // {location.href='./calendar.php'}
                 header('Location: ./calendar.php');
+            }
+            else {
+                $AllOK = true;
+                if ($_POST["eventname"] == "") {
+                echo "Please provide a value for Event Name<br>";
+                $AllOK = false;
+                }
+
+                if ($_POST["starttime"] == "") {
+                echo "Please select a value for Start Time!<br>";
+                $AllOK = false;
+                }
+
+                if ($_POST["endtime"] == "") {
+                echo "Please select a value for Event End Time<br>";
+                $AllOK = false;
+                }          
+
+                if ($_POST["location"] == "") {
+                echo "Please enter a value for Event Location<br>";
+                }
+
+                if ($AllOK) {
+                    $jsonarr = array('eventname' => $_POST["eventname"],
+                                     'starttime' => $_POST["starttime"],
+                                     'endtime' => $_POST["endtime"],
+                                     'location' => $_POST["location"],
+                                     'day' => $_POST["day"]
+                                     );
+                    $jsonstring = json_encode($jsonarr);
+                    // echo $jsonstring;
+                    $jsonfile = fopen("calendar.txt", "a") or die("Unable to open file!");
+                    fwrite($jsonfile, $jsonstring);
+                    fwrite($jsonfile, "\n");
+                    fclose($jsonfile);
+                    // {location.href='./calendar.php'}
+                    header('Location: ./calendar.php');
+                }                
             }
           ?>
         </td> </tr> </table>
@@ -138,10 +145,10 @@
                 </td>
             </tr>
             <tr class="input">
-                <td class="input">
-                    <p> </p>
+                <td class="input" style="text-align: center">
+                    <button type="submit" name="clearall" value="confirm">Clear</button>
                 </td>
-                <td class="input">
+                <td class="input" style="text-align: center">
                     <button type="submit">Submit</button>
                 </td>
             </tr>

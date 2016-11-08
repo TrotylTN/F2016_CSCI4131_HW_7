@@ -21,7 +21,8 @@ td,tr
 
 table.input, tr.input, td.input
 {
-    width: 500px;
+    width: 400px;
+    height: 30px;
     border: none;
     text-align: left;
     margin: auto;

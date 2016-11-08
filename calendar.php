@@ -27,31 +27,32 @@
     <table class="warn"> <tr class="warn"> <td class="warn">
       <?php
         if (!file_exists("calendar.txt")) {
-          echo "Calendar has no events. Please use the input page to enter some events.\n";
+            echo "Calendar has no events. Please use the input page to enter some events.\n";
         }
         else {
-          $jsonfile = fopen("calendar.txt", "r") or die("Unable to open file!");
-          $caldata = array("Mon"=>array(), "Tue"=>array(), "Wed"=>array(), "Thu"=>array(), "Fri"=>array());
-          $dataexist = false;
-          global $caldata;
-          while (!feof($jsonfile)) {
+            $jsonfile = fopen("calendar.txt", "r") or die("Unable to open file!");
+            $caldata = array("Mon"=>array(), "Tue"=>array(), "Wed"=>array(), "Thu"=>array(), "Fri"=>array());
+            $dataexist = false;
+            global $caldata;
             $enjsondata = fgets($jsonfile);
-            if ($enjsondata == "")
-              break;
-            $dataexist = true;
-            $jsondata = json_decode($enjsondata);
-            // echo $enjsondata;
-            // echo $jsondata->{"day"};
-            $cnt = count($caldata[$jsondata->{"day"}]); 
-            // echo $cnt;
-            $caldata[$jsondata->{"day"}][$cnt]["eventname"] = $jsondata->{"eventname"};
-            $caldata[$jsondata->{"day"}][$cnt]["starttime"] = $jsondata->{"starttime"};
-            $caldata[$jsondata->{"day"}][$cnt]["endtime"] = $jsondata->{"endtime"};
-            $caldata[$jsondata->{"day"}][$cnt]["location"] = $jsondata->{"location"};
-          }
-          if (!$caldata) {
-            echo "Calendar has no events. Please use the input page to enter some events.\n";            
-          }
+            if (feof($jsonfile)) {
+                echo "Calendar has no events. Please use the input page to enter some events.\n";            
+            }
+            else {
+                while (!feof($jsonfile)) {
+                    if ($enjsondata == "")
+                        break; 
+                    $dataexist = true;
+                    $jsondata = json_decode($enjsondata);
+                    $cnt = count($caldata[$jsondata->{"day"}]); 
+                    $caldata[$jsondata->{"day"}][$cnt]["eventname"] = $jsondata->{"eventname"};
+                    $caldata[$jsondata->{"day"}][$cnt]["starttime"] = $jsondata->{"starttime"};
+                    $caldata[$jsondata->{"day"}][$cnt]["endtime"] = $jsondata->{"endtime"};
+                    $caldata[$jsondata->{"day"}][$cnt]["location"] = $jsondata->{"location"};
+                    $enjsondata = fgets($jsonfile);
+                }
+            }
+            fclose($jsonfile);
         }
       ?>
     </td> </tr> </table>      

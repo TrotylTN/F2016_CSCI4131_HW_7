@@ -26,7 +26,8 @@
 
     <table class="warn"> <tr class="warn"> <td class="warn">
       <?php
-        $caldata = array("Mon"=>array(), "Tue"=>array(), "Wed"=>array(), "Thu"=>array(), "Fri"=>array());      
+        global $caldata;
+        $caldata = array("Mon"=>array(), "Tue"=>array(), "Wed"=>array(), "Thu"=>array(), "Fri"=>array());
         if (!file_exists("calendar.txt")) {
             echo "Calendar has no events. Please use the input page to enter some events.\n";
         }
@@ -59,9 +60,9 @@
             for ($i = 0; $i <$tot; $i++) {
                 for ($j = $i; $j < $tot; $j++) {
                     if ($day_arr[$i]["starttime"] > $day_arr[$j]["starttime"]) {
-                        $temp = $day_arr[$i];
-                        $day_arr[$i] = $day_arr[$j];
-                        $day_arr[$j] = $temp;
+                        $temp = $caldata[$day_n][$i];
+                        $caldata[$day_n][$i] = $caldata[$day_n][$j];
+                        $caldata[$day_n][$j] = $temp;
                     }
                 }
             }

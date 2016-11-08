@@ -74,10 +74,10 @@
                         $AllOK = false;
                     }
 
-                    // if ($_POST["starttime"] < $_POST["endtime"]) {
-                        // echo "Please enter a endtime which is later than the start time<br>"
-                        // $AllOK = false;
-                    // }
+                    if ($AllOK && strtotime($_POST["starttime"]) < strtotime($_POST["endtime"])) {
+                        echo "Please enter a endtime which is later than the start time<br>"
+                        $AllOK = false;
+                    }
 
                     if ($AllOK) {
                         $jsonarr = array('eventname' => $_POST["eventname"],

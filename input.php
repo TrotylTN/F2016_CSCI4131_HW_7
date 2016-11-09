@@ -52,7 +52,7 @@
                     fclose($jsonfile);
                     header('Location: ./calendar.php');
                 }
-                else {
+                if ($_POST["passdata"] == 'submitted') {
                     $AllOK = true;
                     if ($_POST["eventname"] == "") {
                         echo "Please provide a value for Event Name<br>";
@@ -152,7 +152,7 @@
                     <button type="submit" name="clearall" value="confirm">Clear</button>
                 </td>
                 <td class="input" style="text-align: center">
-                    <button type="submit">Submit</button>
+                    <button type="submit" name="passdata" value="submitted">Submit</button>
                 </td>
             </tr>
         </table>

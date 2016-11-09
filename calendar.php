@@ -55,8 +55,13 @@
         }
 
         // sort
+        global $max_cnt;
+        $max_cnt = 0;
         foreach ($caldata as $day_n => $day_arr) {
             $tot = count($day_arr);
+            if ($tot > $max_cnt) {
+                $max_cnt = $tot;
+            }
             for ($i = 0; $i <$tot; $i++) {
                 for ($j = $i; $j < $tot; $j++) {
                     if ($day_arr[$i]["starttime"] > $day_arr[$j]["starttime"]) {
@@ -73,6 +78,7 @@
     <table>
       <?php
         global $caldata;
+        global $max_cnt;
         foreach ($caldata as $day_n => $day_arr) {
           if (count($day_arr) > 0) {
             echo "<tr class='c'>\n";
@@ -84,6 +90,11 @@
               echo $day_arr[$i]["starttime"] . " - " . $day_arr[$i]["endtime"];
               echo " </span> <br> <br>";
               echo $day_arr[$i]["eventname"] . "<br>@" . $day_arr[$i]["location"] . " <br>";
+              echo "</td>";
+            }
+            for ($i = $tot; $i < $max_cnt; $i++) {
+              echo "<td class='c'>";
+              echo "<p> - </p>";
               echo "</td>";
             }
             echo "</tr>";
